@@ -1,0 +1,38 @@
+{
+  "name": "service_backend",
+  "version": "0.1.0",
+  "bin": {
+    "service_backend": "bin/service_backend.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "cdk": "cdk"
+  },
+  "devDependencies": {
+    "@aws-cdk/assert": "^1.119.0",
+    "@types/jest": "^27.0.1",
+    "@types/node": "16.6.2",
+    "aws-cdk": "^1.119.0",
+    "cross-var": "^1.1.0",
+    "jest": "^27.0.6",
+    "ts-jest": "^27.0.5",
+    "ts-node": "^10.2.1",
+    "typescript": "~4.3.5"
+  },
+  "dependencies": {
+    "@aws-cdk/aws-cloudfront": "^1.119.0",
+    "@aws-cdk/aws-cloudwatch": "^1.119.0",
+    "@aws-cdk/aws-cloudwatch-actions": "^1.119.0",
+    "@aws-cdk/aws-dynamodb": "^1.119.0",
+    "@aws-cdk/aws-iam": "^1.119.0",
+    "@aws-cdk/aws-lambda": "^1.119.0",
+    "@aws-cdk/aws-logs": "^1.119.0",
+    "@aws-cdk/aws-s3": "^1.119.0",
+    "@aws-cdk/aws-sns": "^1.119.0",
+    "@aws-cdk/aws-sns-subscriptions": "^1.119.0",
+    "@aws-cdk/core": "^1.119.0",
+    "source-map-support": "^0.5.19"
+  }
+}

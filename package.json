@@ -1,0 +1,44 @@
+{
+  "name": "udemy-ask-v2-barebones-starter",
+  "version": "1.0.0",
+  "config": {
+    "devAccountNumber": "",
+    "prodAccountNumber": "",
+    "devProfile": "",
+    "prodProfile": "",
+    "skillId": "",
+    "infrastructureDirName": "ServiceBackend",
+    "lambdaDirName": "lambda/code",
+    "stackNameDev": "",
+    "stackNameProd": "",
+    "region": ""
+  },
+  "scripts": {
+    "build": "tsc",
+    "deploy-skill": "npm run private-get-skill-manifest && npm run private-get-interaction-model && npm run private-deploy-skill && cd ./infrastructure/lambda/code && npm run update-lambda-code-dev && cd ../../../",
+    "private-deploy-skill-dev": "ask deploy --ignore-hash --profile %npm_package_config_devProfile% --target skill-metadata",
+    "private-deploy-skill-prod": "ask deploy --ignore-hash --profile %npm_package_config_prodProfile% --target skill-metadata",
+    "private-get-skill-manifest": "ask smapi get-skill-manifest -s %npm_package_config_skillId% --stage development > ./skill-package/skill.json",
+    "private-get-interaction-model": "ask smapi get-interaction-model -s %npm_package_config_skillId% --stage development > ./skill-package/interactionModels/custom/en-US.json",
+    "install-dependencies": "npm install && cd ./infrastructure/%npm_package_config_infrastructureDirName% && npm install && cd ../%npm_package_config_lambdaDirName% && npm install",
+    "first-init-dev": "npx cdk bootstrap aws://%npm_package_config_devAccountNumber/%npm_package_config_region% --profile %npm_package_config_devProfile%",
+    "first-init-prod": "npx cdk bootstrap aws://%npm_package_config_prodAccountNumber/%npm_package_config_region% --profile %npm_package_config_prodProfile%",
+    "check-cdk-updates": "cd ./infrastructure/%npm_package_config_infrastructureDirName% && npx npm-check-updates -u",
+    "install-cdk-updates": "cd ./infrastructure/%npm_package_config_infrastructureDirName% && npm install",
+    "make-cdk-app": "mkdir ./infrastructure/%npm_package_config_infrastructureDirName% && cd ./infrastructure/%npm_package_config_infrastructureDirName% && npx cdk init --language typescript && npm run build",
+    "synth-stack": "cd ./infrastructure/%npm_package_config_infrastructureDirName% && npm run build && npx cdk synth",
+    "list-stacks": "cd ./infrastructure/%npm_package_config_infrastructureDirName% && npx cdk ls",
+    "deploy-dev-stack": "cd ./infrastructure/%npm_package_config_infrastructureDirName% && npx cdk synth && npx cdk deploy %npm_package_config_stackNameDev% --profile  %npm_package_config_devProfile%",
+    "deploy-prod-stack": "cd ./infrastructure/%npm_package_config_infrastructureDirName% && npx cdk synth && npx cdk deploy %npm_package_config_stackNameProd% --profile %npm_package_config_prodProfile%"
+  },
+  "author": "Adonous Tech LLC",
+  "license": "ISC",
+  "keywords": [
+    "alexa",
+    "typescript",
+    "ask",
+    "v2"
+  ],
+  "description": "Serverless application package for Alexa Skills built with ASK CLI and ASK CLI V2 and TypeScript",
+  "devDependencies": {}
+}

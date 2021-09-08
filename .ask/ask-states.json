@@ -1,0 +1,11 @@
+{
+  "askcliStatesVersion": "2020-03-31",
+  "profiles": {
+    "alexadev": {
+      "skillId": "",
+      "skillMetadata": {
+        "lastDeployHash": ""
+      }
+    }
+  }
+}

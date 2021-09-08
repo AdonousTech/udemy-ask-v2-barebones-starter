@@ -1,0 +1,40 @@
+{
+  "name": "src",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "config": {
+    "functionNameDev": "",
+    "functionNameProd": "",
+    "functionFileName": "skill_lambda.zip",
+    "functionFileLocation": "./skill_lambda",
+    "functionFileLocationNormalized": "fileb://skill_lambda.zip",
+    "devProfile": "",
+    "prodProfile": "",
+    "region": ""
+  },
+  "scripts": {
+    "build": "tsc",
+    "update-lambda-code-dev": "npm run build && npm run private-remove-package && npm run private-package-lambda && npm run private-update-lambda-code-dev",
+    "update-lambda-code-prod": "npm run build && npm run private-remove-package && npm run private-package-lambda && npm run private-update-lambda-code-prod",
+    "private-update-lambda-code-dev": "aws lambda update-function-code --profile %npm_package_config_devProfile% --region %npm_package_config_region% --function-name %npm_package_config_functionNameDev% --zip-file %npm_package_config_functionFileLocationNormalized%",
+    "private-update-lambda-code-prod": "aws lambda update-function-code --profile %npm_package_config_prodProfile% --region %npm_package_config_region% --function-name %npm_package_config_functionNameProd% --zip-file %npm_package_config_functionFileLocationNormalized%",
+    "private-package-lambda": "zip -q -r %npm_package_config_functionFileName% ./lib index.js node_modules",
+    "private-remove-package": "rm %npm_package_config_functionFileName%"
+  },
+  "author": "",
+  "license": "APACHE-2.0",
+  "dependencies": {
+    "ask-sdk": "^2.11.0",
+    "ask-sdk-core": "^2.11.0",
+    "ask-sdk-dynamodb-persistence-adapter": "^2.11.0",
+    "ask-sdk-model": "^1.36.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.24",
+    "@types/node": "^12.20.19",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.2.0",
+    "typescript": "^3.7.4"
+  }
+}
